@@ -12,15 +12,7 @@
 
 <body ng-app="main" ng-controller="UserCtrl as user">
     <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="nav navbar-right">
-                    <a class="btn btn-default" ng-click="user.openLoginForm()">Login</a>
-                </div>
-            </div>
-        </nav>
-    <div ng-show="!!user.username1">Welcom {{user.username1}}</div>
-    <div ng-show="!!user.username2">Welcom {{user.username2}}</div>
+        <div ng-include="'nav.html'"></div>
         <form class="form">
             <div class="row">
                 <div class="form-group col-md-6">

@@ -45,7 +45,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next){
-    req.session.destroy(function(){
+    req.session.destroy(function(err){
+        console.log('session destroy failed');
         res.json({})
     })
 });

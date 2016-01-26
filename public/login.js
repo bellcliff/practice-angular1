@@ -8,7 +8,9 @@
 
                 scope.signup = function(user) {
                     $http.post('/api/login', user).success(function(info) {
-                        scope.username = info.username;
+                        if(info.username)
+                            LoginService.loginModal.close({username:info.username});
+                        // TODO: handle error
                     });
                 };
 

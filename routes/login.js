@@ -8,12 +8,14 @@ var Account = require('../models/account');
 router.post('/', function(req, res, next) {
     // for login and register
     var user = req.body;
+    console.log('post user', user);
     Account.register(
         new Account({
-            username: user.name
+            username: user.username
         }),
         user.password,
         function(err, account) {
+            console.log('after save', err, account);
             if (err) {
                 res.json({})
             } else {

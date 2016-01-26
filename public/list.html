@@ -1,0 +1,24 @@
+<form class="form">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>first name</label>
+            <input class="form-control" ng-model="user.newUser.firstName">
+        </div>
+        <div class="form-group col-md-6">
+            <label>last name</label>
+            <input class="form-control" ng-model="user.newUser.lastName">
+        </div>
+    </div>
+    <button class="btn btn-primary" ng-click="user.add(user.newUser)">Submit</button>
+    <button class="btn btn-primary" ng-click="user.updateUser(user.newUser)">Update</button>
+</form>
+<table class="table table-striped">
+    <tr>
+        <th>first name</th>
+        <th>last name</th>
+    </tr>
+    <tr ng-repeat="(uid, u) in user.users" ng-dblclick="user.del(uid)" ng-click="window.console.log(u)">
+        <td>{{u.firstName}}</td>
+        <td>{{u.lastName}}</td>
+    </tr>
+</table>

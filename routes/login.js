@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
             } else {
                 passport.authenticate('local')(req, res, function() {
                     res.json({
-                        username: user.name
+                        username: account.username
                     })
                 });
             }
@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
     //    res.json({
     //        username: username
     //    })
-
+    console.log(req.user)
     if (req.user) {
         res.json({
             username: req.user.username

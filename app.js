@@ -10,6 +10,7 @@ var users = require('./routes/users');
 
 var app = express();
 var session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({url: 'mongodb://localhost:27017/test'})
 }));
 
 app.use('/', routes);

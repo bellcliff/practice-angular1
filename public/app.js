@@ -1,7 +1,23 @@
 (function() {
     'use strict';
 
-    angular.module('main', ['ui.bootstrap'])
+    angular.module('main', ['ui.bootstrap', 'ngRoute'])
+        .config(function($routeProvider){
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'list.html',
+                    controller: 'UserCtrl',
+                    controllerAs: 'user'
+                })
+                .when('/user', {
+                    templateUrl: 'user.html',
+                    controller: 'UserCtrl',
+                    controllerAs: 'user'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                })
+        })
         .service('LoginService', function($http) {
             var self = this;
             self.getUser = function() {

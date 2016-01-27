@@ -6,15 +6,18 @@
             $routeProvider
                 .when('/', {
                     templateUrl: 'list.html',
-                    controllerAs: 'UserCtrl as user'
+                    controller: 'UserCtrl',
+                    controllerAs: 'user'
                 })
                 .when('/user', {
                     templateUrl: 'user.html',
-                    controllerAs: 'UserCtrl as user'
+                    controller: 'UserCtrl',
+                    controllerAs: 'user'
                 })
-                .when('/user/:uid', {
+                .when('/user/:userId', {
                     templateUrl: 'user.html',
-                    controllerAs: 'UserCtrl as user'
+                    controller: 'UserCtrl',
+                    controllerAs: 'user'
                 })
                 .otherwise({
                     redirectTo: '/'
@@ -64,8 +67,9 @@
                 }
             }
         })
-        .controller('UserCtrl', function($scope, $http) {
+        .controller('UserCtrl', function($scope, $http, $routeParams) {
             var self = this;
+            self.uid = $routeParams.userId;
 
             $http.get('/api/user').success(function(data) {
                 self.users = {};

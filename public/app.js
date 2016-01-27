@@ -1,22 +1,22 @@
 (function() {
     'use strict';
 
-    angular.module('main', ['ui.bootstrap', 'ngRoute'])
-        .config(function($routeProvider){
-            $routeProvider
-                .when('/', {
+    angular.module('main', ['ui.bootstrap', 'ui.router'])
+        .config(function($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/');
+            $stateProvider
+                .state('list', {
+                    url: '/',
                     templateUrl: 'list.html',
                     controller: 'UserCtrl',
                     controllerAs: 'user'
                 })
-                .when('/user', {
+                .state('user', {
+                    url: '/user',
                     templateUrl: 'user.html',
                     controller: 'UserCtrl',
                     controllerAs: 'user'
-                })
-                .otherwise({
-                    redirectTo: '/'
-                })
+                });
         })
         .service('LoginService', function($http) {
             var self = this;
@@ -77,7 +77,7 @@
                     templateUrl: 'login.html',
                     controller: 'LoginCtrl',
                 });
-                LoginService.loginModal.result.then(function(data){
+                LoginService.loginModal.result.then(function(data) {
                     self.username = data.username
                 })
             };

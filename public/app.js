@@ -8,12 +8,23 @@
                     templateUrl: 'list.html',
                     controllerAs: 'UserCtrl as user'
                 })
+                .when('/user', {
+                    templateUrl: 'user.html',
+                    controllerAs: 'UserCtrl as user'
+                })
+                .when('/user/:uid', {
+                    templateUrl: 'user.html',
+                    controllerAs: 'UserCtrl as user'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                })
 
         })
-        .service('LoginService', function($http) {
+        .service('LoginService', function($http, $location) {
             var self = this;
             self.getUser = function() {
-                return $http.get('/api/login').success(function(info){
+                return $http.get('/api/login').success(function(info) {
                     self.username = info.username;
                     return self.username
                 })
@@ -22,14 +33,14 @@
                 return $http.get('/api/login/logout')
             }
         })
-        .directive('myNav', function(LoginService, $uibModal) {
+        .directive('myNav', function(LoginService, $uibModal, $location) {
             return {
                 templateUrl: 'nav.html',
                 controller: function($scope) {
                     LoginService.getUser().then(function(info) {
                         console.log('user login info', info)
-                        // if use then, the username should be like
-                        // data.data.username
+                            // if use then, the username should be like
+                            // data.data.username
                         $scope.username = info.data.username
                     })
 
@@ -47,6 +58,9 @@
                             $scope.username = data.username
                         })
                     };
+                    $scope.isActive = function(viewLocation) {
+                        return viewLocation === $location.path()
+                    }
                 }
             }
         })

@@ -3,6 +3,7 @@
 <html>
 
 <head>
+    <base href="/">
     <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="libs/angular-bootstrap/ui-bootstrap-csp.css">
     <script type="text/javascript" src="libs/angular/angular.js"></script>
@@ -12,8 +13,8 @@
 </head>
 
 <body ng-app="main">
+    <my-nav></my-nav>
     <div class="container">
-        <my-nav></my-nav>
         <div ng-view></div>
     </div>
     <script type="text/javascript" src="app.js"></script>
